@@ -18,7 +18,7 @@ import { MegaMenu } from './MegaMenu/MegaMenu';
 import { NavToolbar } from './NavToolbar/NavToolbar';
 import { ReturnToPrevious } from './ReturnToPrevious/ReturnToPrevious';
 import { TopSearchBar } from './TopBar/TopSearchBar';
-import { TOP_BAR_LEVEL_HEIGHT } from './types';
+import { TOP_BAR_LEVEL_HEIGHT, NAV_BAR_LEVEL_HEIGHT } from './types';
 
 export interface Props extends PropsWithChildren<{}> {}
 
@@ -120,12 +120,12 @@ const getStyles = (theme: GrafanaTheme2) => {
     content: css({
       display: 'flex',
       flexDirection: 'column',
-      paddingTop: TOP_BAR_LEVEL_HEIGHT * 2,
+      paddingTop: TOP_BAR_LEVEL_HEIGHT + NAV_BAR_LEVEL_HEIGHT,
       flexGrow: 1,
       height: '100%',
     }),
     contentNoSearchBar: css({
-      paddingTop: TOP_BAR_LEVEL_HEIGHT,
+      paddingTop: NAV_BAR_LEVEL_HEIGHT,
     }),
     contentChromeless: css({
       paddingTop: 0,

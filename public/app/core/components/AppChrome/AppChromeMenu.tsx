@@ -12,7 +12,7 @@ import { KioskMode } from 'app/types';
 
 import { MegaMenu, MENU_WIDTH } from './MegaMenu/MegaMenu';
 import { TOGGLE_BUTTON_ID } from './NavToolbar/NavToolbar';
-import { TOP_BAR_LEVEL_HEIGHT } from './types';
+import { TOP_BAR_LEVEL_HEIGHT, NAV_BAR_LEVEL_HEIGHT } from './types';
 
 interface Props {}
 
@@ -76,7 +76,7 @@ export function AppChromeMenu({}: Props) {
 }
 
 const getStyles = (theme: GrafanaTheme2, searchBarHidden?: boolean) => {
-  const topPosition = searchBarHidden ? TOP_BAR_LEVEL_HEIGHT : TOP_BAR_LEVEL_HEIGHT * 2;
+  const topPosition = searchBarHidden ? NAV_BAR_LEVEL_HEIGHT : TOP_BAR_LEVEL_HEIGHT + NAV_BAR_LEVEL_HEIGHT;
 
   return {
     backdrop: css({
@@ -86,7 +86,7 @@ const getStyles = (theme: GrafanaTheme2, searchBarHidden?: boolean) => {
       left: 0,
       position: 'fixed',
       right: 0,
-      top: searchBarHidden ? 0 : TOP_BAR_LEVEL_HEIGHT,
+      top: searchBarHidden ? 0 : NAV_BAR_LEVEL_HEIGHT,
       zIndex: theme.zIndex.modalBackdrop,
 
       [theme.breakpoints.up('md')]: {
@@ -102,7 +102,7 @@ const getStyles = (theme: GrafanaTheme2, searchBarHidden?: boolean) => {
       // Needs to below navbar should we change the navbarFixed? add add a new level?
       zIndex: theme.zIndex.modal,
       position: 'fixed',
-      top: searchBarHidden ? 0 : TOP_BAR_LEVEL_HEIGHT,
+      top: searchBarHidden ? 0 : NAV_BAR_LEVEL_HEIGHT,
       backgroundColor: theme.colors.background.primary,
       boxSizing: 'content-box',
       flex: '1 1 0',

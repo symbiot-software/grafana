@@ -11,7 +11,7 @@ import { useSelector } from 'app/types';
 
 import { Breadcrumbs } from '../../Breadcrumbs/Breadcrumbs';
 import { buildBreadcrumbs } from '../../Breadcrumbs/utils';
-import { TOP_BAR_LEVEL_HEIGHT } from '../types';
+import { NAV_BAR_LEVEL_HEIGHT } from '../types';
 
 import { NavToolbarSeparator } from './NavToolbarSeparator';
 
@@ -93,7 +93,7 @@ const getStyles = (theme: GrafanaTheme2) => {
       },
     }),
     pageToolbar: css({
-      height: TOP_BAR_LEVEL_HEIGHT,
+      height: NAV_BAR_LEVEL_HEIGHT,
       display: 'flex',
       padding: theme.spacing(0, 1, 0, 2),
       alignItems: 'center',

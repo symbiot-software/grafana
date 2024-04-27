@@ -10,20 +10,12 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#000" />
 
-    <title>[[.AppTitle]]</title>
+    <title>SYMBIOT - Grafana UI</title>
 
     <base href="[[.AppSubUrl]]/" />
 
-    <link rel="icon" type="image/png" href="[[.FavIcon]]" />
-    <link rel="apple-touch-icon" sizes="180x180" href="[[.AppleTouchIcon]]" />
-    <link rel="mask-icon" href="[[.Assets.ContentDeliveryURL]]public/img/grafana_mask_icon.svg" color="#F05A28" />
-
     <!-- If theme is "system", we inject the stylesheets with javascript further down the page -->
-    [[ if eq .ThemeType "light" ]]
     <link rel="stylesheet" href="[[.Assets.Light]]" />
-    [[ else if eq .ThemeType "dark" ]]
-    <link rel="stylesheet" href="[[.Assets.Dark]]" />
-    [[ end ]]
 
     <script nonce="[[.Nonce]]">
       performance.mark('frontend_boot_css_time_seconds');
@@ -35,7 +27,7 @@
     <meta name="msapplication-config" content="public/img/browserconfig.xml" />
   </head>
 
-  <body class="theme-[[ .ThemeType ]] [[.AppNameBodyClass]]">
+  <body class="theme-light [[.AppNameBodyClass]]">
     <style>
       .preloader {
         height: 100%;
@@ -246,25 +238,8 @@
         assets: [[.Assets]]
       };
 
-      // Set theme to match system only on startup.
-      // Do not react to changes in system theme after startup.
-      if (window.grafanaBootData.user.theme === "system") {
-        document.body.classList.remove("theme-system");
-        var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        var cssLink = document.createElement("link");
-        cssLink.rel = 'stylesheet';
-
-        if (darkQuery.matches) {
-          document.body.classList.add("theme-dark");
-          cssLink.href = window.grafanaBootData.assets.dark;
-          window.grafanaBootData.user.lightTheme = false;
-        } else {
-          document.body.classList.add("theme-light");
-          cssLink.href = window.grafanaBootData.assets.light;
-          window.grafanaBootData.user.lightTheme = true;
-        }
-        document.head.appendChild(cssLink);
-      }
+      window.grafanaBootData.user.theme = "light";
+      window.grafanaBootData.user.lightTheme = true;
 
       window.__grafana_load_failed = function() {
         var preloader = document.getElementsByClassName("preloader");
