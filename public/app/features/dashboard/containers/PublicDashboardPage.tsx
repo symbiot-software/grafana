@@ -36,6 +36,19 @@ export type Props = GrafanaRouteComponentProps<PublicDashboardPageRouteParams, P
 
 const selectors = e2eSelectors.pages.PublicDashboard;
 
+function getQueryParams(): Record<string, string | undefined> {
+  const searchParams = new URLSearchParams(window.location.search);
+  const params: Record<string, string | undefined> = {};
+
+  searchParams.forEach((value, key) => {
+    params[key] = value;
+  });
+
+  return params;
+}
+
+const titleFromUrl = getQueryParams().title;
+
 const Toolbar = ({ dashboard }: { dashboard: DashboardModel }) => {
   const dispatch = useDispatch();
   const conf = useGetPublicDashboardConfig();
@@ -46,7 +59,7 @@ const Toolbar = ({ dashboard }: { dashboard: DashboardModel }) => {
 
   return (
     <PageToolbar
-      title={dashboard.title}
+      title={titleFromUrl ?? dashboard.title}
       pageIcon={!conf.headerLogoHide ? 'grafana' : undefined}
       buttonOverflowAlignment="right"
     >
